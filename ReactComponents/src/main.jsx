@@ -58,40 +58,64 @@ const root = createRoot(document.getElementById(`root`));
 // })
 // console.log(listItems);
 
-function MyButton()
-{
-  function handleClick()
-  {
-    alert('Button is clicked!');
-  }
+// function MyButton()
+// {
+//   function handleClick()
+//   {
+//     alert('Button is clicked!');
+//   }
 
-  return <button onClick={handleClick}>Click Me!</button>
+//   return <button onClick={handleClick}>Click Me!</button>
+// }
+
+// function CountNumber()
+// {
+//   const [ count,setCount ] = useState(0);
+
+//   function handleClick()
+//   {
+//     setCount(count+1);
+//   }
+
+//   return <button onClick={handleClick}>Clicked {count} times!</button>
+// }
+
+
+function MyButton({count,onClick})
+{
+  return <button onClick={onClick}>Clicked {count} times!</button>
 }
 
-function CountNumber()
+
+function MyApp()
 {
-  const [ count,setCount ] = useState(0);
+  const [count,setCount] = useState(0);
 
   function handleClick()
   {
     setCount(count+1);
   }
 
-  return <button onClick={handleClick}>Clicked {count} times!</button>
+  return (
+            <>
+                <h1>Counters that update together.</h1>
+                <MyButton onClick={handleClick} count={ count }> </MyButton>
+                <MyButton onClick={handleClick} count={ count }> </MyButton>
+            </>
+          )
 }
-
 
 
 root.render(
   <>
-    {/* <h3>My List Items</h3>
+    {/* {/* <h3>My List Items</h3>
     <ul>
       {listItems}
     </ul> */}
     {/* <MyButton/> */}
-    <CountNumber/>
-    <br/>
-    <br/>
-    <CountNumber/>
+    {/* <CountNumber/> */}
+    {/* <CountNumber/>  */}
+
+    <MyApp/>
   </>
 )
